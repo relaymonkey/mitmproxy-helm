@@ -16,7 +16,7 @@
 
 ### P1
 
-- [ ] Fix logging to stdout.
+- [ ] Fix logging to stdout (https://github.com/mitmproxy/mitmproxy/issues/5727).
 - [ ] Support use of one centralized/remote data store.
   - Enables HA.
 
