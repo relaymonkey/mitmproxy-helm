@@ -1,10 +1,10 @@
-# Disclaimer
+Disclaimer: This is a work in progress and not yet ready for production use.
 
-This is a work in progress and not yet ready for production use.
+---
 
 # Introduction
 
-This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
+This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) ([sponsor](https://github.com/sponsors/mhils)) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. It is used for debugging and auditing encrypted traffic.
 
 # Install
 
@@ -18,4 +18,4 @@ This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) deployment on a
 
 ## Live Kubernetes cluster
 
-Add proper `Service` annotations supported by your cloud provider and/or change the `Service` type to `LoadBalancer` or `NodePort`. For use with dedicated ingress controllers, add this chart as a dependency to your own chart and add the proper resources to your own chart.
+Add proper `Service` annotations supported by your cloud provider and/or change the `Service` type to `LoadBalancer` or `NodePort`. For use with dedicated ingress controllers, add this chart as a dependency to your own chart and add the proper resources.
