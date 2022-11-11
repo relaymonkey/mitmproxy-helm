@@ -4,7 +4,7 @@ Disclaimer: This is a work in progress and not yet ready for production use.
 
 # Introduction
 
-This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) ([sponsor](https://github.com/sponsors/mhils)) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. It is used for debugging and auditing encrypted traffic.
+This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) ([sponsor](https://github.com/sponsors/mhils)) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. It is used as a proxy for capturing, debugging and auditing SSL/TLS encrypted traffic. Supported protocols are HTTP/1, HTTP/2 and WebSocket.
 
 # Install
 
