@@ -6,6 +6,7 @@
 
 - [ ] Publish to Artifact Hub.
   - [ ] Add a CI job to publish the chart to Artifact Hub.
+  - Approved from upstream project.
 
 ### P2
 

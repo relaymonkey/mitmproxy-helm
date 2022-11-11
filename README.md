@@ -1,4 +1,6 @@
-Disclaimer: This is a work in progress and not yet ready for production use.
+Disclaimer:
+* This is a work in progress and not yet ready for production use.
+* This chart is not maintained by the upstream project and any issues with the chart should be raised [in the upstream repository](https://github.com/mitmproxy/mitmproxy/issues).
 
 ---
 
