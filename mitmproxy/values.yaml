@@ -10,6 +10,10 @@ args:
   - --web-host
   - 0.0.0.0
 
+# This mitigates the issue of the container not emitting any logs
+tty:
+  enabled: true
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

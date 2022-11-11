@@ -17,7 +17,8 @@
 
 ### P1
 
-- [ ] Fix logging to stdout (https://github.com/mitmproxy/mitmproxy/issues/5727).
+- [x] Fix logging to stdout (https://github.com/mitmproxy/mitmproxy/issues/5727).
+  - Mitigated temporarily in Kubernetes by using `tty: true`. 
 - [ ] Support use of one centralized/remote data store.
   - Enables HA.
 
