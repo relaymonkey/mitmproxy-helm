@@ -5,6 +5,7 @@
 ### P1
 
 - [ ] Publish to Artifact Hub.
+  - [ ] Add install steps to use public Helm registry.
   - [ ] Add a CI job to publish the chart to Artifact Hub.
   - Approved from upstream project.
 
