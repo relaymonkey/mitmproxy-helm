@@ -3,6 +3,20 @@ entries:
   mitmproxy:
   - apiVersion: v2
     appVersion: 9.0.1
+    created: "2022-11-12T03:31:37.976847789Z"
+    description: mitmproxy is a free and open source interactive HTTPS proxy
+    digest: 0012e4185d7c013f1a152304a17c75da079b48545583a5a04e154b1a84843300
+    home: https://mitmproxy.org/
+    name: mitmproxy
+    sources:
+    - https://github.com/mitmproxy/mitmproxy
+    - https://github.com/relaymonkey/mitmproxy-helm
+    type: application
+    urls:
+    - https://github.com/relaymonkey/mitmproxy-helm/releases/download/mitmproxy-9.0.1-alpha.2/mitmproxy-9.0.1-alpha.2.tgz
+    version: 9.0.1-alpha.2
+  - apiVersion: v2
+    appVersion: 9.0.1
     created: "2022-11-12T01:22:48.750054548Z"
     description: mitmproxy is a free and open source interactive HTTPS proxy
     digest: 9304813ed2534e2726471e725d9bcd236b202875bc8c9329daf5efb30e415f33
@@ -15,4 +29,4 @@ entries:
     urls:
     - https://github.com/relaymonkey/mitmproxy-helm/releases/download/mitmproxy-9.0.1-alpha.1/mitmproxy-9.0.1-alpha.1.tgz
     version: 9.0.1-alpha.1
-generated: "2022-11-12T01:22:48.750062848Z"
+generated: "2022-11-12T03:31:37.97686269Z"
