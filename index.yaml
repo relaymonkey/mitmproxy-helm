@@ -1,6 +1,38 @@
 apiVersion: v1
 entries:
   mitmproxy:
+  - annotations:
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Helm chart source
+          url: https://github.com/relaymonkey/mitmproxy-helm/tree/main/charts/mitmproxy
+        - name: Upstream project
+          url: https://github.com/mitmproxy/mitmproxy
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 9.0.1
+    created: "2022-11-12T09:01:37.073770333Z"
+    description: mitmproxy is a free and open source interactive HTTPS proxy
+    digest: 65b5448fed70f1eda4a9cd20d7f649c29bbbdc384be8ffd2f874065bbd6392c3
+    home: https://mitmproxy.org/
+    keywords:
+    - mitmproxy
+    - network
+    - proxy
+    - TLS
+    - SSL
+    - HTTPS
+    maintainers:
+    - name: Relay Monkey
+      url: https://github.com/relaymonkey
+    name: mitmproxy
+    sources:
+    - https://github.com/relaymonkey/mitmproxy-helm/tree/main/charts/mitmproxy
+    - https://github.com/mitmproxy/mitmproxy
+    type: application
+    urls:
+    - https://github.com/relaymonkey/mitmproxy-helm/releases/download/mitmproxy-9.0.1-alpha.3/mitmproxy-9.0.1-alpha.3.tgz
+    version: 9.0.1-alpha.3
   - apiVersion: v2
     appVersion: 9.0.1
     created: "2022-11-12T03:31:37.976847789Z"
@@ -29,4 +61,4 @@ entries:
     urls:
     - https://github.com/relaymonkey/mitmproxy-helm/releases/download/mitmproxy-9.0.1-alpha.1/mitmproxy-9.0.1-alpha.1.tgz
     version: 9.0.1-alpha.1
-generated: "2022-11-12T03:31:37.97686269Z"
+generated: "2022-11-12T09:01:37.073789234Z"
