@@ -18,4 +18,4 @@ helm upgrade mitmproxy --install --create-namespace --namespace mitmproxy mitmpr
 
 ---
 
-Detailed Helm chart README.md is available [here](https://github.com/relaymonkey/mitmproxy-helm/blob/main/charts/mitmproxy/README.md).
+Detailed chart README.md is available [here](https://github.com/relaymonkey/mitmproxy-helm/blob/main/charts/mitmproxy/README.md).
