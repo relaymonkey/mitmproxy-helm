@@ -11,24 +11,96 @@ This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) ([sponsor](http
 # Quickstart
 
 ```shell
-# Add the mitmproxy Helm repository
 helm repo add mitmproxy https://relaymonkey.github.io/mitmproxy-helm/
-# Update the Helm repository
 helm repo update
-# Install mitmproxy
 helm upgrade mitmproxy --install --create-namespace --namespace mitmproxy mitmproxy/mitmproxy --devel
 ```
 
-# Install
+# Use
+
+## Expose mitmproxy endpoint
+
+Configure `Service` resource with supported values by your (cloud) Kubernetes provider. For use with 3rd party ingress controller CRD resources, add this chart as a dependency to your own chart and configure additional resources.
+
+## Configure your proxy settings
+
+Configure HTTP/HTTPS proxy settings to use exposed mitmproxy endpoint (default port 8080). Visit Web UI (default port 8081) or connect to container shell and use CLI to inspect traffic.
+
+# Test
 
 ## Local testing and development
 
-1. Install local Kubernetes cluster, e.g. minikube, k3d, kind, etc.
+1. Install local Kubernetes cluster, e.g. [k3d](https://k3d.io/), [kind](https://kind.sigs.k8s.io/), [minikube](https://minikube.sigs.k8s.io) etc.
 2. Install Helm CLI.
-3. Run `helm upgrade mitmproxy --install --create-namespace --namespace mitm mitmproxy` from the root of this repository.
-4. Run `kubectl port-forward svc/mitmproxy 8080:8080 -n mitm` to forward the mitmproxy service to localhost:8080.
-5. Run `kubectl port-forward svc/mitmproxy 8081:8081 -n mitm` to forward the mitmproxy web interface to localhost:8081.
+3. Follow Quickstart instructions.
+4. Expose mitmproxy and Web UI ports to `localhost`:
+```shell
+# Forward mitmproxy proxy to localhost:8080
+kubectl port-forward svc/mitmproxy 8080:8080 -n mitmproxy
+# Forward mitmproxy Web UI to localhost:8081
+kubectl port-forward svc/mitmproxy 8081:8081 -n mitmproxy
+```
+5. Visit http://localhost:8081/ to access the Web UI.
+6. Configure HTTP/HTTPS proxy settings to use `localhost:8080`.
+7. Visit http://mitm.it/ to install the mitmproxy CA certificate.
 
-## Live Kubernetes cluster
+# Configuration
 
-Add proper `Service` annotations supported by your cloud provider and/or change the `Service` type to `LoadBalancer` or `NodePort`. For use with dedicated ingress controllers, add this chart as a dependency to your own chart and add the proper resources.
+Parameters are auto-generated from `values.yaml` using [Readme Generator For Helm](https://github.com/bitnami-labs/readme-generator-for-helm).
+
+## Parameters
+
+### Values parameters
+
+| Name                                            | Description                                                                               | Value                                |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------ |
+| `image.repository`                              | Image registry                                                                            | `mitmproxy/mitmproxy`                |
+| `image.pullPolicy`                              | Image pull policy                                                                         | `IfNotPresent`                       |
+| `image.tag`                                     | Image tag                                                                                 | `""`                                 |
+| `args`                                          | Command arguments                                                                         | `["mitmweb","--web-host","0.0.0.0"]` |
+| `tty.enabled`                                   | Enable tty                                                                                | `true`                               |
+| `imagePullSecrets`                              | Image pull secrets                                                                        | `[]`                                 |
+| `nameOverride`                                  | String to partially override mitmproxy.fullname template (will maintain the release name) | `""`                                 |
+| `fullnameOverride`                              | String to fully override mitmproxy.fullname template                                      | `""`                                 |
+| `replicaCount`                                  | Number of mitmproxy replicas to deploy                                                    | `1`                                  |
+| `autoscaling.enabled`                           | Enable autoscaling for mitmproxy                                                          | `false`                              |
+| `autoscaling.minReplicas`                       | Minimum number of mitmproxy replicas                                                      | `1`                                  |
+| `autoscaling.maxReplicas`                       | Maximum number of mitmproxy replicas                                                      | `10`                                 |
+| `autoscaling.targetCPUUtilizationPercentage`    | Target CPU utilization percentage                                                         | `80`                                 |
+| `autoscaling.targetMemoryUtilizationPercentage` | Target Memory utilization percentage                                                      | `80`                                 |
+| `serviceAccount.create`                         | Specifies whether a service account should be created                                     | `true`                               |
+| `serviceAccount.annotations`                    | Annotations to add to the service account                                                 | `{}`                                 |
+| `serviceAccount.name`                           | The name of the service account to use                                                    | `""`                                 |
+| `podAnnotations`                                | Annotations for mitmproxy pods                                                            | `{}`                                 |
+| `podSecurityContext`                            | Security context for mitmproxy pods                                                       | `{}`                                 |
+| `securityContext`                               | Security context for mitmproxy containers                                                 | `{}`                                 |
+| `ports[0].name`                                 | Name of the port (mitmproxy)                                                              | `mitmproxy`                          |
+| `ports[0].containerPort`                        | Container port to expose (mitmproxy)                                                      | `8080`                               |
+| `ports[0].protocol`                             | Protocol used by the port (mitmproxy)                                                     | `TCP`                                |
+| `ports[1].name`                                 | Name of the port (Web UI)                                                                 | `mitmweb`                            |
+| `ports[1].containerPort`                        | Container port to expose (Web UI)                                                         | `8081`                               |
+| `ports[1].protocol`                             | Protocol used by the port (Web UI)                                                        | `TCP`                                |
+| `service.enabled`                               | Enable mitmproxy service                                                                  | `true`                               |
+| `service.type`                                  | mitmproxy service type                                                                    | `ClusterIP`                          |
+| `service.ports[0].name`                         | Name of the port (mitmproxy)                                                              | `mitmproxy`                          |
+| `service.ports[0].port`                         | Port to expose (mitmproxy)                                                                | `8080`                               |
+| `service.ports[0].targetPort`                   | Target port (mitmproxy)                                                                   | `mitmproxy`                          |
+| `service.ports[0].protocol`                     | Protocol used by the port (mitmproxy)                                                     | `TCP`                                |
+| `service.ports[1].name`                         | Name of the port (Web UI)                                                                 | `mitmweb`                            |
+| `service.ports[1].port`                         | Port to expose (Web UI)                                                                   | `8081`                               |
+| `service.ports[1].targetPort`                   | Target port (Web UI)                                                                      | `mitmweb`                            |
+| `service.ports[1].protocol`                     | Protocol used by the port (Web UI)                                                        | `TCP`                                |
+| `service.annotations`                           | Annotations for mitmproxy service                                                         | `{}`                                 |
+| `livenessProbe.httpGet.path`                    | Path to probe                                                                             | `/`                                  |
+| `livenessProbe.httpGet.port`                    | Port to probe                                                                             | `8081`                               |
+| `livenessProbe.initialDelaySeconds`             | Initial delay seconds                                                                     | `5`                                  |
+| `livenessProbe.timeoutSeconds`                  | Timeout seconds                                                                           | `5`                                  |
+| `readinessProbe.httpGet.path`                   | Path to probe                                                                             | `/`                                  |
+| `readinessProbe.httpGet.port`                   | Port to probe                                                                             | `8081`                               |
+| `readinessProbe.initialDelaySeconds`            | Initial delay seconds                                                                     | `5`                                  |
+| `readinessProbe.timeoutSeconds`                 | Timeout seconds                                                                           | `5`                                  |
+| `resources`                                     | Resource requests and limits for mitmproxy containers                                     | `{}`                                 |
+| `nodeSelector`                                  | Node labels for mitmproxy pods assignment                                                 | `{}`                                 |
+| `tolerations`                                   | Tolerations for mitmproxy pods assignment                                                 | `[]`                                 |
+| `affinity`                                      | Affinity for mitmproxy pods assignment                                                    | `{}`                                 |
+
