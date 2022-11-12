@@ -19,10 +19,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: GuillaumeFalourd/copy-push-files@v1
-        with:
-          commit_message: "Update README.md and LICENSE"
-          target_branch: gh-pages
-          source_files: README.md LICENSE
-          remote_repository: https://github.com/relaymonkey/mitmproxy-helm
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge changes to gh-pages
+        env:
+          SOURCE_BRANCH: main
+          SOURCE_FILES: ./README.md ./LICENSE
+          TARGET_BRANCH: gh-pages
+        run: |
+          # Configure git
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          
+          # Checkout target branch
+          echo "Checking out $TARGET_BRANCH..."
+          git fetch
+          git checkout $TARGET_BRANCH
+          ls -al
+          
+          # Copy files
+          echo "Checkout files ($SOURCE_FILES) from $SOURCE_BRANCH to $TARGET_BRANCH..."
+          git checkout $SOURCE_BRANCH -- $SOURCE_FILES
+          git status
+          
+          # Commit and push
+          echo "Commit and push..."
+          git add .
+          git diff-index --quiet HEAD || git commit -am "Update README.md and LICENSE"
+          git push origin $TARGET_BRANCH
