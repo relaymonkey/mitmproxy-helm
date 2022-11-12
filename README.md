@@ -10,7 +10,7 @@ This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) ([sponsor](http
 
 # Quickstart
 
-```
+```shell
 # Add the mitmproxy Helm repository
 helm repo add mitmproxy https://relaymonkey.github.io/mitmproxy-helm/
 # Update the Helm repository
