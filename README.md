@@ -8,6 +8,14 @@ Disclaimer:
 
 This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) ([sponsor](https://github.com/sponsors/mhils)) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. It is used as a proxy for capturing, debugging and auditing SSL/TLS encrypted traffic. Supported protocols are HTTP/1, HTTP/2 and WebSocket. Deploy mitmproxy at scale.
 
+# Quickstart
+
+```shell
+helm repo add mitmproxy https://relaymonkey.github.io/mitmproxy-helm/
+helm repo update
+helm upgrade mitmproxy --install mitmproxy/mitmproxy
+```
+
 # Install
 
 ## Local testing and development
