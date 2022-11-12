@@ -1,0 +1,28 @@
+name: Commit readme to gh-pages
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+      - 'LICENSE'
+
+jobs:
+  mirror-readme:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: GuillaumeFalourd/copy-push-files@v1
+        with:
+          commit_message: "Update README.md and LICENSE"
+          target_branch: gh-pages
+          source_files: README.md LICENSE
+          remote_repository: https://github.com/relaymonkey/mitmproxy-helm
+          access_token: ${{ secrets.GITHUB_TOKEN }}
