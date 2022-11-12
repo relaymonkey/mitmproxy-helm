@@ -4,10 +4,8 @@
 
 ### P1
 
-- [ ] Publish to Artifact Hub.
-  - [ ] Add install steps to use public Helm registry.
-  - [ ] Add a CI job to publish the chart to Artifact Hub.
-  - Approved from upstream project.
+- [x] Publish to Artifact Hub. Approved from upstream project. AH auto syncs from GH Pages.
+  - [x] Add install steps to use public Helm registry.
 
 ### P2
 
