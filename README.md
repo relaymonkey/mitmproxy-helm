@@ -11,24 +11,11 @@ This Helm chart bootstraps a [mitmproxy](https://mitmproxy.org/) ([sponsor](http
 # Quickstart
 
 ```shell
-# Add the mitmproxy Helm repository
 helm repo add mitmproxy https://relaymonkey.github.io/mitmproxy-helm/
-# Update the Helm repository
 helm repo update
-# Install mitmproxy
 helm upgrade mitmproxy --install --create-namespace --namespace mitmproxy mitmproxy/mitmproxy --devel
 ```
 
-# Install
+---
 
-## Local testing and development
-
-1. Install local Kubernetes cluster, e.g. minikube, k3d, kind, etc.
-2. Install Helm CLI.
-3. Run `helm upgrade mitmproxy --install --create-namespace --namespace mitm mitmproxy` from the root of this repository.
-4. Run `kubectl port-forward svc/mitmproxy 8080:8080 -n mitm` to forward the mitmproxy service to localhost:8080.
-5. Run `kubectl port-forward svc/mitmproxy 8081:8081 -n mitm` to forward the mitmproxy web interface to localhost:8081.
-
-## Live Kubernetes cluster
-
-Add proper `Service` annotations supported by your cloud provider and/or change the `Service` type to `LoadBalancer` or `NodePort`. For use with dedicated ingress controllers, add this chart as a dependency to your own chart and add the proper resources.
+Detailed README.md is available [here](https://github.com/relaymonkey/mitmproxy-helm/blob/main/charts/mitmproxy/README.md).

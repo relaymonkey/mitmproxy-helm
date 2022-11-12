@@ -2,7 +2,7 @@ apiVersion: v2
 name: mitmproxy
 description: mitmproxy is a free and open source interactive HTTPS proxy
 type: application
-version: 9.0.1-alpha.3
+version: 9.0.1-alpha.4
 appVersion: 9.0.1
 sources:
   - https://github.com/relaymonkey/mitmproxy-helm/tree/main/charts/mitmproxy

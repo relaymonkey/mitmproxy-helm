@@ -1,3 +1,9 @@
+## @section Values parameters
+
+
+## @param image.repository Image registry
+## @param image.pullPolicy Image pull policy
+## @param image.tag Image tag
 image:
   # Official mitmproxy image form Docker Hub
   repository: mitmproxy/mitmproxy
@@ -5,28 +11,42 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+## @param args Command arguments
 args:
   - mitmweb
   - --web-host
   - 0.0.0.0
 
+## @param tty.enabled Enable tty
 # This mitigates the issue of the container not emitting any logs
 tty:
   enabled: true
 
+## @param imagePullSecrets Image pull secrets
 imagePullSecrets: []
+## @param nameOverride String to partially override mitmproxy.fullname template (will maintain the release name)
 nameOverride: ""
+## @param fullnameOverride String to fully override mitmproxy.fullname template
 fullnameOverride: ""
 
+## @param replicaCount Number of mitmproxy replicas to deploy
 # Use >1 replica only with centralised data store
 replicaCount: 1
+## @param autoscaling.enabled Enable autoscaling for mitmproxy
+## @param autoscaling.minReplicas Minimum number of mitmproxy replicas
+## @param autoscaling.maxReplicas Maximum number of mitmproxy replicas
+## @param autoscaling.targetCPUUtilizationPercentage Target CPU utilization percentage
+## @param autoscaling.targetMemoryUtilizationPercentage Target Memory utilization percentage
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 
+## @param serviceAccount.create Specifies whether a service account should be created
+## @param serviceAccount.annotations Annotations to add to the service account
+## @param serviceAccount.name The name of the service account to use
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -36,11 +56,14 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+## @param podAnnotations Annotations for mitmproxy pods
 podAnnotations: {}
 
+## @param podSecurityContext Security context for mitmproxy pods
 podSecurityContext: {}
   # fsGroup: 2000
 
+## @param securityContext Security context for mitmproxy containers
 securityContext: {}
   # capabilities:
   #   drop:
@@ -49,6 +72,12 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+## @param ports[0].name Name of the port (mitmproxy)
+## @param ports[0].containerPort Container port to expose (mitmproxy)
+## @param ports[0].protocol Protocol used by the port (mitmproxy)
+## @param ports[1].name Name of the port (Web UI)
+## @param ports[1].containerPort Container port to expose (Web UI)
+## @param ports[1].protocol Protocol used by the port (Web UI)
 ports:
   - name: &mitmproxy-name mitmproxy
     containerPort: &mitmproxy-port 8080
@@ -57,6 +86,17 @@ ports:
     containerPort: &mitmweb-port 8081
     protocol: TCP
 
+## @param service.enabled Enable mitmproxy service
+## @param service.type mitmproxy service type
+## @param service.ports[0].name Name of the port (mitmproxy)
+## @param service.ports[0].port Port to expose (mitmproxy)
+## @param service.ports[0].targetPort Target port (mitmproxy)
+## @param service.ports[0].protocol Protocol used by the port (mitmproxy)
+## @param service.ports[1].name Name of the port (Web UI)
+## @param service.ports[1].port Port to expose (Web UI)
+## @param service.ports[1].targetPort Target port (Web UI)
+## @param service.ports[1].protocol Protocol used by the port (Web UI)
+## @param service.annotations Annotations for mitmproxy service
 service:
   enabled: true
   type: ClusterIP
@@ -71,6 +111,10 @@ service:
       name: *mitmweb-name
   annotations: {}
 
+## @param livenessProbe.httpGet.path Path to probe
+## @param livenessProbe.httpGet.port Port to probe
+## @param livenessProbe.initialDelaySeconds Initial delay seconds
+## @param livenessProbe.timeoutSeconds Timeout seconds
 livenessProbe: &livenessProbe
   httpGet:
     path: /
@@ -78,8 +122,13 @@ livenessProbe: &livenessProbe
   initialDelaySeconds: 5
   timeoutSeconds: 5
 
+## @param readinessProbe.httpGet.path Path to probe
+## @param readinessProbe.httpGet.port Port to probe
+## @param readinessProbe.initialDelaySeconds Initial delay seconds
+## @param readinessProbe.timeoutSeconds Timeout seconds
 readinessProbe: *livenessProbe
 
+## @param resources Resource requests and limits for mitmproxy containers
 resources: {}
   # limits:
   #   memory: 128Mi
@@ -87,8 +136,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+## @param nodeSelector Node labels for mitmproxy pods assignment
 nodeSelector: {}
 
+## @param tolerations Tolerations for mitmproxy pods assignment
 tolerations: []
 
+## @param affinity Affinity for mitmproxy pods assignment
 affinity: {}
