@@ -2,9 +2,27 @@ apiVersion: v2
 name: mitmproxy
 description: mitmproxy is a free and open source interactive HTTPS proxy
 type: application
-version: 9.0.1-alpha.2
+version: 9.0.1-alpha.3
 appVersion: 9.0.1
 sources:
+  - https://github.com/relaymonkey/mitmproxy-helm/tree/main/charts/mitmproxy
   - https://github.com/mitmproxy/mitmproxy
-  - https://github.com/relaymonkey/mitmproxy-helm
 home: https://mitmproxy.org/
+annotations:
+  artifacthub.io/links: |
+    - name: Helm chart source
+      url: https://github.com/relaymonkey/mitmproxy-helm/tree/main/charts/mitmproxy
+    - name: Upstream project
+      url: https://github.com/mitmproxy/mitmproxy
+  artifacthub.io/license: "MIT"
+  artifacthub.io/prerelease: "true"
+keywords:
+  - mitmproxy
+  - network
+  - proxy
+  - TLS
+  - SSL
+  - HTTPS
+maintainers:
+  - name: Relay Monkey
+    url: https://github.com/relaymonkey
