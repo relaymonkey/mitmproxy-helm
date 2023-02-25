@@ -16,6 +16,14 @@ args:
   - mitmweb
   - --web-host
   - 0.0.0.0
+  - -w
+  - /data-test/flows.pcap
+  - -r
+  - /data-test/flows.pcap
+  - --set
+  - save-stream-file=+/data-test/flows.pcap
+  - --set
+  - rfile=/data-test/flows.pcap
 
 ## @param tty.enabled Enable tty
 # This mitigates the issue of the container not emitting any logs
@@ -144,3 +152,29 @@ tolerations: []
 
 ## @param affinity Affinity for mitmproxy pods assignment
 affinity: {}
+
+minio:
+  enabled: true
+  auth:
+    rootUser: admin
+    rootPassword: password
+
+juicefs:
+  enabled: true
+  storageClasses:
+    - name: juicefs-sc
+      enabled: true
+      reclaimPolicy: Retain
+      backend:
+        name: minio
+        storage: minio
+        accessKey: admin
+        secretKey: password
+        bucket: "http://mitmproxy-minio:9000/test"
+        metaurl: "redis://mitmproxy-redis-master:6379/1"
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false

@@ -2,7 +2,7 @@ apiVersion: v2
 name: mitmproxy
 description: mitmproxy is a free and open source interactive HTTPS proxy
 type: application
-version: 9.0.1-alpha.4
+version: 0.2.0-alpha.0
 appVersion: 9.0.1
 sources:
   - https://github.com/relaymonkey/mitmproxy-helm/tree/main/charts/mitmproxy
@@ -26,3 +26,17 @@ keywords:
 maintainers:
   - name: Relay Monkey
     url: https://github.com/relaymonkey
+dependencies:
+  - name: minio
+    version: 11.10.16
+    repository: https://charts.bitnami.com/bitnami
+    condition: minio.enabled
+  - name: juicefs-csi-driver
+    alias: juicefs
+    version: 0.13.1
+    repository: https://juicedata.github.io/charts/
+    condition: juicefs.enabled
+  - name: redis
+    version: 17.3.9
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled

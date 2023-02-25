@@ -1,0 +1,12 @@
+dependencies:
+- name: minio
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.10.16
+- name: juicefs-csi-driver
+  repository: https://juicedata.github.io/charts/
+  version: 0.13.1
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.3.9
+digest: sha256:1efb96f188709d353937b2506bcd34145df02fcc32f179b9fa877ca579bf1695
+generated: "2022-11-14T00:59:02.759075+01:00"
