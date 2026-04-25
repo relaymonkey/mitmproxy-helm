@@ -17,6 +17,9 @@ args:
   - --web-host
   - 0.0.0.0
 
+## @param config Allow specifying mitm config file, either in an override.yaml, or with --set-file
+config: ""
+
 ## @param tty.enabled Enable tty
 # This mitigates the issue of the container not emitting any logs
 tty:
@@ -100,15 +103,19 @@ ports:
 service:
   enabled: true
   type: ClusterIP
+
   ports:
-    - port: *mitmproxy-port
+
+    - name: *mitmproxy-name
+      port: *mitmproxy-port
+      protocol: TCP
       targetPort: *mitmproxy-name
+
+    - name: *mitmweb-name
+      port: *mitmweb-port
       protocol: TCP
-      name: *mitmproxy-name
-    - port: *mitmweb-port
       targetPort: *mitmweb-name
-      protocol: TCP
-      name: *mitmweb-name
+
   annotations: {}
 
 ## @param livenessProbe.httpGet.path Path to probe

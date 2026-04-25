@@ -1,3 +1,4 @@
 # Chart dependencies
 **/charts/*.tgz
 .idea/
+**override.yaml
